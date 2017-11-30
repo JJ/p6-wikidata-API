@@ -1,24 +1,59 @@
 use v6;
 
 unit class Wikidata::API;
+use URI::Encode;
+use HTTP::Client;
+use JSON::Tiny;
+
+sub query (Str $query) is export {
+    my $encoded = uri_encode $query;
+    my $client = HTTP::Client.new;
+    my $response = $client.get("https://query.wikidata.org/sparql?format=JSON\&query=" ~ $encoded );
+    return from-json $response.content;
+}
+
+sub query-file (Str $query-file) is export {
+    my $query = slurp $query-file;
+    return query( $query );
+}
 
 =begin pod
 
 =head1 NAME
 
-Math::Constants - blah blah blah
+Wikidata::API - Query the Wikidata API 
 
 =head1 SYNOPSIS
 
-  use Math::Constants;
+  use Wikidata::API;
 
-say "We have ", phi, " ", plancks-h, " ",  plancks-reduced-h, " ", c
-, " ", G, " and ", fine-structure-constant, " plus ",
-elementary-charge, " and ", vacuum-permittivity ;
-say "And also  φ ", φ, " α ", α,  " ℎ ",  ℎ, " and ℏ ", ℏ,
-" with q ", q, " and ε0 ", ε0;
+  my $query = q:to/END/;
+SELECT ?person ?personLabel WHERE {
+  
+    ?person wdt:P69 wd:Q1232180 . 
+    ?person wdt:P21 wd:Q6581072 . 
+  
+    SERVICE wikibase:label { 
+      bd:serviceParam wikibase:language "en" .
+    }
+} ORDER BY ?personLabel
+END
 
-   say "We are flying at speed ", .1c;
+  my $UGR-women = query( $query );
+
+  my $to-file= q:to/END/;
+SELECT ?person ?personLabel ?occupation ?occupationLabel WHERE {
+  ?person wdt:P69 wd:Q1232180. 
+  ?person wdt:P21 wd:Q6581072.
+  ?person wdt:P106 ?occupation
+  SERVICE wikibase:label {				
+    bd:serviceParam wikibase:language "es" .
+  }
+}
+END
+
+  spurt "ugr-women-by-job.sparql", $to-file;
+  say query-file( $to-file );
 
 =head1 DESCRIPTION
 

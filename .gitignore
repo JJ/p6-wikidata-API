@@ -24,6 +24,8 @@ Build.bat
 # Module::Install
 inc/
 
+**/.precomp
+
 # ExtUitls::MakeMaker
 /blib/
 /_eumm/
@@ -33,3 +35,5 @@ inc/
 /MANIFEST.bak
 /pm_to_blib
 /*.zip
+
+*~

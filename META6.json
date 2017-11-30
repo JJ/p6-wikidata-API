@@ -16,7 +16,8 @@
     "source-url" : "https://github.com/JJ/p6-wikidata-API.git",
     "depends" : [
 	"URI::Encode",
-	"HTTP::Client"
+	"HTTP::Client",
+	"JSON::Tiny"
     ],
     "test-depends"  : [
         "Test",
