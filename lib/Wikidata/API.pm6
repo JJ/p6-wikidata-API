@@ -59,6 +59,19 @@ END
 
 This is a convenience wrapper for the SPARQL endpoints of Wikidata, found at L<https://query.wikidata.org/>. You can either query directly using SPARQL (check out examples here: L<https://www.mediawiki.org/wiki/Special:MyLanguage/Wikidata_query_service>) or crafting a file and sending it. 
 
+=over 4
+
+=item query( Str $query)
+
+Passes to the Wikidata API the SPARQL query, returns a data structure which includes L<results> with the rests of results
+
+=item query-file( Str $query)
+
+Opens the file and passes it to C<query> to make the request.
+						     
+=cut
+									  
+									  
 =head1 AUTHOR
 
 JJ Merelo <jjmerelo@gmail.com>
