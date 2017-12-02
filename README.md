@@ -42,3 +42,8 @@ END
   
 There are a few SPARQL queries you can
 try [in this other repo](https://github.com/JJ/wikidata-queries) 
+
+Download one query from that repo to test the command-line utility
+that will be installed too
+
+	wdq.p6 one-query-or-other.sparql
