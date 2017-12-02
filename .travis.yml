@@ -5,9 +5,10 @@ install:
   - docker pull jjmerelo/test-perl6
   - docker images
   - docker run -t -v  /home/travis/build/JJ/p6-wikidata-API:/test  --entrypoint="/bin/sh" jjmerelo/test-perl6 -c "apk update && apk upgrade && apk add openssl-dev"
+  -  docker run -t -v  /home/travis/build/JJ/p6-wikidata-API:/test  --entrypoint="/bin/sh" jjmerelo/test-perl6 -c "perl6 --version; zef --version"
 
 script:
-  - docker run -t -v  /home/travis/build/JJ/p6-wikidata-API:/test  --entrypoint="/bin/sh" jjmerelo/test-perl6  -c cd /test && zef install .
+  - docker run -t -v  /home/travis/build/JJ/p6-wikidata-API:/test  --entrypoint="/bin/sh" jjmerelo/test-perl6  -c "cd /test && zef install ."
   - docker run -t -v /home/travis/build/JJ/p6-wikidata-API:/test jjmerelo/test-perl6
 
 
