@@ -3,7 +3,7 @@ use v6;
 unit class Wikidata::API;
 use URI::Encode;
 use HTTP::Client;
-use JSON::Tiny;
+use JSON::Fast;
 
 sub query (Str $query) is export {
     my $encoded = uri_encode $query;
