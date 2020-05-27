@@ -1,14 +1,13 @@
+language: minimal
+
 services:
   - docker
 
 install:
-  - docker pull jjmerelo/test-perl6
-  - docker images
-  - docker run -t --entrypoint="/bin/sh" jjmerelo/test-perl6 -c "apk update && apk upgrade && apk add openssl-dev"
-  - docker run -t --entrypoint="/bin/sh" jjmerelo/test-perl6 -c "perl6 --version; which zef "
+  - docker pull jjmerelo/raku-test-openssl
 
 script: 
-  - docker run -t -v  $TRAVIS_BUILD_DIR:/test jjmerelo/test-perl6
+  - docker run -t -v  $TRAVIS_BUILD_DIR:/test jjmerelo/raku-test-openssl
 
 
 
