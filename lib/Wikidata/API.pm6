@@ -9,7 +9,9 @@ sub query (Str $query) is export {
     my $encoded = uri_encode $query;
     my $client = HTTP::Client.new;
     my $response = $client.get("https://query.wikidata.org/sparql?format=JSON\&query=" ~ $encoded );
-    return from-json $response.content;
+    if $response.status == 200 {
+        return from-json $response.content;
+    }
 }
 
 sub query-file (Str $query-file) is export {
