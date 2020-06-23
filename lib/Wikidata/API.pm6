@@ -4,6 +4,7 @@ unit class Wikidata::API;
 use URI::Encode;
 use HTTP::Client;
 use JSON::Fast;
+use X::Wikidata::API;
 
 sub query (Str $query) is export {
     my $encoded = uri_encode $query;
@@ -11,6 +12,9 @@ sub query (Str $query) is export {
     my $response = $client.get("https://query.wikidata.org/sparql?format=JSON\&query=" ~ $encoded );
     if $response.status == 200 {
         return from-json $response.content;
+    } else {
+        X::Wikidata::API.new( error => "Error response " ~ $response.status ~
+                ": " ~ $response.content ).throw;
     }
 }
 
