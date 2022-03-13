@@ -37,7 +37,7 @@ END
   spurt "ugr-women-by-job.sparql", $to-file;
   say query-file( $to-file );
 ~~~
-  
+
 There are a few SPARQL queries you can
 try [in this other repo](https://github.com/JJ/wikidata-queries)
 

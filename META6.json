@@ -1,26 +1,30 @@
 {
-    "authors" : [
-	"JJ Merelo"
-    ],
-    "description" : "A thin wrapper for querying the Wikidata API using SPARQL",
-    "name" : "Wikidata::API",
-    "license" : "GPL-3.0",
-    "perl" : "6.*",
-    "provides" : {
-	   "Wikidata::API" : "lib/Wikidata/API.pm6",
-      "X::Wikidata::API": "lib/X/Wikidata/API.pm6"
-    },
-    "tags" : ["wrapper", "SPARQL", "wikidata"],
-    "resources" : [ ],
-    "source-url" : "https://github.com/JJ/p6-wikidata-API.git",
-    "depends" : [
-	  "URI::Encode",
-	  "HTTP::Client",
-	  "JSON::Tiny"
-    ],
-    "test-depends"  : [
-        "Test",
-        "Test::META"
-    ],
-    "version" : "0.0.5"
+  "name": "Wikidata::API",
+  "description": "A thin wrapper for querying the Wikidata API using SPARQL",
+  "version": "0.0.5",
+  "perl": "6.*",
+  "authors": [
+    "JJ Merelo"
+  ],
+  "auth": "zef:jjmerelo",
+  "depends": [
+    "URI::Encode",
+    "HTTP::Client",
+    "JSON::Tiny"
+  ],
+  "test-depends": [
+    "Test",
+    "Test::META"
+  ],
+  "provides": {
+    "Wikidata::API": "lib/Wikidata/API.pm6",
+    "X::Wikidata::API": "lib/X/Wikidata/API.pm6"
+  },
+  "license": "GPL-3.0",
+  "tags": [
+    "wrapper",
+    "SPARQL",
+    "wikidata"
+  ],
+  "source-url": "https://github.com/JJ/p6-wikidata-API.git"
 }
