@@ -1,8 +1,7 @@
-# Wikidata API in Perl 6
+# Wikidata API in Raku
 
-[![Build Status](https://travis-ci.org/JJ/p6-wikidata-API.svg?branch=master)](https://travis-ci.org/JJ/p6-wikidata-API)
 
-Perl6 module to query the wikidata API. Install it the usual way
+Raku module to query the wikidata API. Install it the usual way
 
     zef install Wikidata::API
 
@@ -13,11 +12,10 @@ Use it:
 
   my $query = q:to/END/;
 SELECT ?person ?personLabel WHERE {
-  
-    ?person wdt:P69 wd:Q1232180 . 
-    ?person wdt:P21 wd:Q6581072 . 
-  
-    SERVICE wikibase:label { 
+
+    ?person wdt:P69 wd:Q1232180 .
+    ?person wdt:P21 wd:Q6581072 .
+    SERVICE wikibase:label {
       bd:serviceParam wikibase:language "en" .
     }
 } ORDER BY ?personLabel
@@ -27,10 +25,10 @@ END
 
   my $to-file= q:to/END/;
 SELECT ?person ?personLabel ?occupation ?occupationLabel WHERE {
-  ?person wdt:P69 wd:Q1232180. 
+  ?person wdt:P69 wd:Q1232180.
   ?person wdt:P21 wd:Q6581072.
   ?person wdt:P106 ?occupation
-  SERVICE wikibase:label {				
+  SERVICE wikibase:label {
     bd:serviceParam wikibase:language "es" .
   }
 }
@@ -41,16 +39,13 @@ END
 ~~~
   
 There are a few SPARQL queries you can
-try [in this other repo](https://github.com/JJ/wikidata-queries) 
+try [in this other repo](https://github.com/JJ/wikidata-queries)
 
 Download one query from that repo to test the command-line utility
 that will be installed too
 
 	wdq.p6 one-query-or-other.sparql
 
-## See also
+## LICENSE
 
-This module is tested using
-the [`test-perl6`](https://hub.docker.com/r/jjmerelo/test-perl6/)
-Docker container. Check out
-the [Travis configuration file](.travis.yml) for usage.
+Released under the [Artistic License](LICENSE).
