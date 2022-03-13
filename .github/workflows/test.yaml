@@ -1,4 +1,4 @@
-name: "Run tests"
+name: "Test-install and cache deps"
 on: [ push, pull_request ]
 jobs:
   test:
@@ -10,6 +10,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Cache installed dists
+        uses: actions/cache@v2
+        id: meta6
+        with:
+          path: ~/.raku/
+          key: ${{ runner.os }}-${{ hashFiles('META6.json') }}
+      - name: Install modules
+        if: steps.meta6.outputs.cache-hit != 'true'
+        run: zef install --deps-only .
       - name: Test modules
         run: zef test --verbose .
 
