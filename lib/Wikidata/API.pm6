@@ -8,10 +8,8 @@ use X::Wikidata::API;
 
 sub query (Str $query) is export {
     my $encoded = uri_encode $query;
-    say $encoded;
     my $response = jget("https://query.wikidata.org/sparql?format=JSON\&query=" ~ $encoded );
     if $response {
-        say $response;
         return $response;
     } else {
         X::Wikidata::API.new( error => "Error response " ~ $response ~

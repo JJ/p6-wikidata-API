@@ -34,11 +34,7 @@ END
 my $garlic-recipes = query( $query );
 ok $garlic-recipes<results>, "Non-null results";
 ok $garlic-recipes<results><bindings>[0], "There's a result";
-is utf8y($garlic-recipes<results><bindings>[0]<recipeLabel><value>),
+is $garlic-recipes<results><bindings>[0]<recipeLabel><value>,
         "Anchoïade", "Decoding correct";
 
 done-testing;
-
-sub utf8y ( $str ) {
-    Buf.new( $str.ords ).decode("utf8")
-}
