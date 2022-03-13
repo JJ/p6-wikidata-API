@@ -9,7 +9,7 @@
   "auth": "zef:jjmerelo",
   "depends": [
     "URI::Encode",
-    "HTTP::Client",
+    "WWW",
     "JSON::Tiny"
   ],
   "test-depends": [
