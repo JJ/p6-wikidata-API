@@ -1,7 +1,7 @@
 {
   "name": "Wikidata::API",
   "description": "A thin wrapper for querying the Wikidata API using SPARQL",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "perl": "6.*",
   "authors": [
     "JJ Merelo"
